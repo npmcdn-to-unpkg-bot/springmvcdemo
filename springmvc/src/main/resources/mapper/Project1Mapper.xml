@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ProjectMapper">
+
+    <insert id="save1" parameterType="pd">
+        insert into tbl_project(projectId,departmentId,departmentName)
+        values (#{projectId},#{departmentId},#{departmentName})
+    </insert>
+
+    <select id="findById1" parameterType="pd" resultType="pd">
+        select
+        departmentId, projectId, departmentName
+        from
+        tbl_project
+        where
+        projectId=#{projectId}
+    </select>
+
+    <select id="listAll1" parameterType="pd" resultType="pd">
+        select
+        departmentId, projectId, departmentName
+        from
+        tbl_project
+    </select>
+</mapper>
