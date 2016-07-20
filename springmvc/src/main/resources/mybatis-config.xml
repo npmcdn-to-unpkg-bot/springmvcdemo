@@ -10,7 +10,7 @@
     </settings>
 
     <typeAliases>
-        <typeAlias type="me.ele.pmo.model.Project" alias="Project"/>
+        <!--<typeAlias type="me.ele.pmo.model.Project" alias="Project"/>-->
         <typeAlias type="com.fh.util.PageData" alias="pd"/>
     </typeAliases>
 
