@@ -21,16 +21,13 @@ public class ShiroRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-
-        String username = (String) token.getPrincipal();                //得到用户名
-        String password = new String((char[]) token.getCredentials());    //得到密码
-
+        String username = (String) token.getPrincipal();
+        String password = new String((char[]) token.getCredentials());
         if ((null != username && null != password) && ("kimi".equals(username) && "123456".equals(password))) {
             return new SimpleAuthenticationInfo(username, password, getName());
         } else {
             return null;
         }
-
     }
 
     /*
@@ -39,9 +36,7 @@ public class ShiroRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection pc) {
-
         System.out.println("========2");
-
         return null;
     }
 
