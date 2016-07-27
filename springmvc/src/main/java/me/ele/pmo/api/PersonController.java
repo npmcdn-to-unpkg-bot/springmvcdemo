@@ -8,6 +8,7 @@ import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import java.text.DateFormat;
@@ -45,6 +46,14 @@ public class PersonController extends BaseController {
             e.printStackTrace();
         }
         return mapper;
+    }
+
+    @RequestMapping(value = "/save")
+    public ModelAndView save() throws Exception {
+        ModelAndView mv = this.getModelAndView();
+        PageData pd = this.getPageData();
+        mv.setViewName("person_edit");
+        return mv;
     }
 
     @InitBinder
