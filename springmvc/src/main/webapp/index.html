@@ -3,9 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        body {
+            background-color: #008de1;
+        }
+
+        h1 {
+            background-color: #00ff00;
+        }
+
+        p {
+            background-color: rgb(255, 0, 255);
+        }
+
+    </style>
 </head>
 <script src="script/jquery-1.9.1.min.js"></script>
 <script src="script/json2.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
 <script>
     $(document).ready(function () {
 
@@ -95,7 +110,7 @@
         });
 
         $.ajax({
-            url: "/springmvcdemo/showcase/get2.aspxfds",
+            url: "/springmvc/showcase/get2.aspxfds",
             type: "GET",
             dataType: "html",
             contentType: "application/x-www-form-urlencoded",
@@ -105,9 +120,16 @@
         });
 
     });
+
+    var app = angular.module('myApp', []);
+    app.controller('showcase', function ($scope) {
+        $scope.firstName = "Kimi";
+        $scope.lastName = "Qu";
+    });
+
 </script>
 
-<body>
+<body class="back">
 <h2>Hello World!</h2>
 <label id="lbldeprtmentName">department name:</label> <input type="text" id="departmentName"><br/>
 <label id="lbldeprtmentManager">department manager:</label> <input type="text" id="departmentManager"><br/>
@@ -125,6 +147,35 @@
 
 <div id="projects"></div>
 
+<!--
+<div ng-app="">
+    <p>Name : <input type="text" ng-model="name1"></p>
+    <h1>Hello {{name1}}</h1>
+    <p ng-bind="name1"></p>
+</div>
+-->
+<p></p>
+
+<!--
+<div ng-app="myApp" ng-controller="showcase">
+    <p>My first expression: {{ 5 + 5 }}</p>
+
+    First Name: <input type="text" ng-model="firstName"><br>
+    Last Name: <input type="text" ng-model="lastName"><br>
+    <br>
+    Full Name: {{firstName + " " + lastName}}
+</div>
+-->
+
+<form ng-app="" name="myForm">
+    Email:
+    <input type="email" name="myAddress" ng-model="text">
+    <span ng-show="myForm.myAddress.$error.email">Not a valid e-mail address</span>
+</form>
+
+<p>Enter your e-mail address in the input field. AngularJS will display an error message if the address is not an
+    e-mail.</p>
+<!--
 <table border="1">
     <tr>
         <th>Month</th>
@@ -134,6 +185,6 @@
         <td>January</td>
         <td>$100</td>
     </tr>
-</table>
+</table>-->
 </body>
-</html>
+<html>

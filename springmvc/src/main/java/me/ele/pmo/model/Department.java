@@ -71,7 +71,7 @@ public class Department {
         this.projectManager = projectManager;
     }
 
-    public void show(){
+    public void show() {
 
     }
 }

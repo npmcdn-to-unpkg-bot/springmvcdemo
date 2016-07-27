@@ -9,7 +9,7 @@
 
     <select id="findById" parameterType="pd" resultType="pd">
         select
-        departmentId, projectId, departmentName
+        departmentId, projectId, departmentName, createdAt
         from
         tbl_project
         where
@@ -18,7 +18,7 @@
 
     <select id="find" parameterType="pd" resultType="pd">
         select
-        departmentId, projectId, departmentName
+        departmentId, projectId, departmentName, createdAt
         from
         tbl_project
         where 1=1
@@ -32,14 +32,14 @@
 
     <select id="listAll" parameterType="pd" resultType="pd">
         select
-        departmentId, projectId, departmentName
+        departmentId, projectId, departmentName, createdAt
         from
         tbl_project
     </select>
 
     <select id="list" parameterType="pd" resultType="pd">
         select
-        departmentId, projectId, departmentName
+        departmentId, projectId, departmentName, createdAt
         from
         tbl_project
         WHERE 1=1

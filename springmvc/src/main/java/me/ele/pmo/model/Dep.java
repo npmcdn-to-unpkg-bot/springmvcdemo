@@ -9,7 +9,7 @@ public class Dep {
     private int departmentId;
     private String departmentName;
     private List<Emp> employees;
-    
+
     public int getDepartmentId() {
         return departmentId;
     }

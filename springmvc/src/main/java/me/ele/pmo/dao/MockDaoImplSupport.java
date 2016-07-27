@@ -3,6 +3,7 @@ package me.ele.pmo.dao;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by kimi on 5/24/16.
@@ -32,6 +33,10 @@ public class MockDaoImplSupport implements AbstractDao {
 
     public Object findForList(String str, Object obj) throws Exception {
         return new ArrayList<Object>();
+    }
+
+    public List<Object> findForList1(String str, Object obj) throws Exception {
+        return null;
     }
 
     public Object findForMap(String sql, Object obj, String key, String value) throws Exception {

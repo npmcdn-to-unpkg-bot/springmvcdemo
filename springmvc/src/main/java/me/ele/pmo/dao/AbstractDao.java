@@ -1,5 +1,7 @@
 package me.ele.pmo.dao;
 
+import java.util.List;
+
 /**
  * Created by kimi on 5/23/16.
  */
@@ -54,6 +56,8 @@ public interface AbstractDao {
      * @throws Exception
      */
     public Object findForList(String str, Object obj) throws Exception;
+
+    public List<Object> findForList1(String str, Object obj) throws Exception;
 
     /**
      * 查找对象封装成Map

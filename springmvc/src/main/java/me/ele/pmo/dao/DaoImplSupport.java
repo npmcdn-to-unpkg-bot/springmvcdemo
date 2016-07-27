@@ -7,6 +7,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * Created by kimi on 5/23/16.
  */
@@ -57,6 +59,16 @@ public class DaoImplSupport implements AbstractDao {
     }
 
     public Object findForList(String str, Object obj) throws Exception {
+        SqlSessionFactory sqlSessionFactory = sqlSessionTemplate.getSqlSessionFactory();
+        SqlSession sqlSession = sqlSessionFactory.openSession(ExecutorType.BATCH, false);
+        try {
+            return sqlSession.selectList(str, obj);
+        } finally {
+            sqlSession.close();
+        }
+    }
+
+    public List<Object> findForList1(String str, Object obj) throws Exception {
         SqlSessionFactory sqlSessionFactory = sqlSessionTemplate.getSqlSessionFactory();
         SqlSession sqlSession = sqlSessionFactory.openSession(ExecutorType.BATCH, false);
         try {
