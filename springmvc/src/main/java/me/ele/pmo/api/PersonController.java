@@ -32,13 +32,13 @@ public class PersonController extends BaseController {
 
     @RequestMapping(value = "/query", method = RequestMethod.GET)
     @ResponseBody
-    public Map<String, Object> query() {
+    public Map<String, Object> query(@RequestParam(value = "current", required = false, defaultValue = "1") int current,
+                                     @RequestParam(value = "size", required = false, defaultValue = "2") int size) {
         Map<String, Object> mapper = new HashMap<String, Object>();
         List<PageData> pd = null;
         Page page = new Page();
-        page.setShowCount(1);
-        page.setTotalResult(3);
-        page.setCurrentPage(1);
+        page.setShowCount(size);
+        page.setCurrentPage(current);
         try {
             pd = this.personService.list(page);
             mapper.put("result", pd);
@@ -53,6 +53,23 @@ public class PersonController extends BaseController {
         ModelAndView mv = this.getModelAndView();
         PageData pd = this.getPageData();
         mv.setViewName("person_edit");
+        return mv;
+    }
+
+    @RequestMapping(value = "/list")
+    public ModelAndView list(Page page) throws Exception {
+        ModelAndView mv = this.getModelAndView();
+        PageData pd = null;
+        pd = this.getPageData();
+        String keywords = pd.getString("keywords");
+        if (null != keywords && !"".equals(keywords)) {
+            pd.put("keywords", keywords.trim());
+        }
+        page.setPd(pd);
+        List<PageData> varList = personService.list(page);
+        mv.setViewName("person_list");
+        mv.addObject("varList", varList);
+        mv.addObject("pd", pd);
         return mv;
     }
 
