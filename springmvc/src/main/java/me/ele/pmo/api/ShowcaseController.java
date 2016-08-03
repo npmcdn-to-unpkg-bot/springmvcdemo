@@ -48,16 +48,15 @@ public class ShowcaseController extends BaseController {
     @ResponseBody
     public String add2(@RequestBody Project project) {
         PageData pd = this.getPageData();
-        pd.put("projectId", project.getProjectId());
+        //pd.put("projectId", project.getProjectId());
         pd.put("departmentId", project.getDepartmentId());
         pd.put("departmentName", project.getDepartmentName());
 
-        boolean result = false;
         try {
-            result = this.projectServiceImpl.save(pd);
+            this.projectServiceImpl.save1(pd);
         } catch (Exception e) {
         }
-        return String.valueOf(result);
+        return String.valueOf(pd.get("projectId"));
     }
 
     @RequestMapping(value = "/query2", method = RequestMethod.GET)

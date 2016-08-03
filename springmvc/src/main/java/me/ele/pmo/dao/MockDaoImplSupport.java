@@ -10,8 +10,11 @@ import java.util.List;
  */
 @Repository(value = "mockDaoImplSupport")
 public class MockDaoImplSupport implements AbstractDao {
-
     public MockDaoImplSupport() {
+    }
+
+    @Override
+    public void save1(String str, Object obj) throws Exception {
 
     }
 

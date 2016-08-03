@@ -7,6 +7,8 @@ import java.util.List;
  */
 public interface AbstractDao {
 
+    void save1(String str, Object obj) throws Exception;
+
     /**
      * 保存对象
      *
@@ -15,7 +17,7 @@ public interface AbstractDao {
      * @return
      * @throws Exception
      */
-    public Object save(String str, Object obj) throws Exception;
+    Object save(String str, Object obj) throws Exception;
 
     /**
      * 修改对象
@@ -25,7 +27,7 @@ public interface AbstractDao {
      * @return
      * @throws Exception
      */
-    public Object update(String str, Object obj) throws Exception;
+    Object update(String str, Object obj) throws Exception;
 
     /**
      * 删除对象
@@ -35,7 +37,7 @@ public interface AbstractDao {
      * @return
      * @throws Exception
      */
-    public Object delete(String str, Object obj) throws Exception;
+    Object delete(String str, Object obj) throws Exception;
 
     /**
      * 查找对象
@@ -45,7 +47,7 @@ public interface AbstractDao {
      * @return
      * @throws Exception
      */
-    public Object findForObject(String str, Object obj) throws Exception;
+    Object findForObject(String str, Object obj) throws Exception;
 
     /**
      * 查找对象
@@ -55,9 +57,9 @@ public interface AbstractDao {
      * @return
      * @throws Exception
      */
-    public Object findForList(String str, Object obj) throws Exception;
+    Object findForList(String str, Object obj) throws Exception;
 
-    public List<Object> findForList1(String str, Object obj) throws Exception;
+    List<Object> findForList1(String str, Object obj) throws Exception;
 
     /**
      * 查找对象封装成Map
@@ -67,6 +69,6 @@ public interface AbstractDao {
      * @return
      * @throws Exception
      */
-    public Object findForMap(String sql, Object obj, String key, String value) throws Exception;
+    Object findForMap(String sql, Object obj, String key, String value) throws Exception;
 
 }

@@ -8,6 +8,8 @@ import java.util.List;
  * Created by kimi on 5/23/16.
  */
 public interface ProjectService {
+    void save1(PageData pd) throws Exception;
+
     boolean save(PageData pd) throws Exception;
 
     PageData findById(PageData pd) throws Exception;

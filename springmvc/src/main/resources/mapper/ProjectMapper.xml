@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ProjectMapper">
 
-    <insert id="save" parameterType="pd">
-        insert into tbl_project(projectId,departmentId,departmentName)
-        values (#{projectId},#{departmentId},#{departmentName})
+    <insert id="save" parameterType="pd" useGeneratedKeys="true" keyProperty="projectId">
+        insert into tbl_project(departmentId,departmentName)
+        values (#{departmentId},#{departmentName})
     </insert>
 
     <select id="findById" parameterType="pd" resultType="pd">

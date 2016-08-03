@@ -18,6 +18,19 @@ public class DaoImplSupport implements AbstractDao {
     @Autowired
     private SqlSessionTemplate sqlSessionTemplate;
 
+    @Override
+    public void save1(String str, Object obj) throws Exception {
+        SqlSessionFactory sqlSessionFactory = sqlSessionTemplate.getSqlSessionFactory();
+        SqlSession sqlSession = sqlSessionFactory.openSession(ExecutorType.BATCH, false);
+        try {
+            int returnObj = sqlSession.insert(str, obj);
+            sqlSession.flushStatements();
+            sqlSession.commit();
+        } finally {
+            sqlSession.close();
+        }
+    }
+
     public Object save(String str, Object obj) throws Exception {
         SqlSessionFactory sqlSessionFactory = sqlSessionTemplate.getSqlSessionFactory();
         SqlSession sqlSession = sqlSessionFactory.openSession(ExecutorType.BATCH, false);

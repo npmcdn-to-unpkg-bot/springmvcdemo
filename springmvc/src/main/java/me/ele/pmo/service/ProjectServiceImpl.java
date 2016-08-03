@@ -17,6 +17,11 @@ public class ProjectServiceImpl implements ProjectService {
     @Resource(name = "daoImplSupport")
     private AbstractDao daoImplSupport;
 
+    @Override
+    public void save1(PageData pd) throws Exception {
+        this.daoImplSupport.save1("ProjectMapper.save", pd);
+    }
+
     public boolean save(PageData pd) throws Exception {
         return this.daoImplSupport.save("ProjectMapper.save", pd) != null ? true : false;
     }
