@@ -11,7 +11,7 @@ public class StringUtil {
      * @param valStr
      * @return String[]
      */
-    public static String[] StrList(String valStr) {
+    public static String[] strList(String valStr) {
         int i = 0;
         String TempStr = valStr;
         String[] returnStr = new String[valStr.length() + 1 - TempStr.replace(",", "").length()];
