@@ -23,7 +23,7 @@ public class DaoImplSupport implements AbstractDao {
         SqlSessionFactory sqlSessionFactory = sqlSessionTemplate.getSqlSessionFactory();
         SqlSession sqlSession = sqlSessionFactory.openSession(ExecutorType.BATCH, false);
         try {
-            int returnObj = sqlSession.insert(str, obj);
+            sqlSession.insert(str, obj);
             sqlSession.flushStatements();
             sqlSession.commit();
         } finally {

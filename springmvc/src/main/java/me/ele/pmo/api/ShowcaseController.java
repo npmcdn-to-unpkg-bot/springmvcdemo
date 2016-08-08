@@ -1,5 +1,6 @@
 package me.ele.pmo.api;
 
+import com.fh.util.ObjectExcelView;
 import com.fh.util.PageData;
 import me.ele.pmo.base.BaseController;
 import me.ele.pmo.dto.DepEmpDto;
@@ -10,16 +11,21 @@ import me.ele.pmo.service.DepartmentService;
 import me.ele.pmo.service.EmployeeService;
 import me.ele.pmo.service.ProjectService;
 import me.ele.pmo.service.ProjectService1;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.document.AbstractExcelView;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -233,6 +239,54 @@ public class ShowcaseController extends BaseController {
         }
         stringBuilder.append("</table>");
         return stringBuilder.toString();
+    }
+
+    @RequestMapping(value = "/download", method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String, Object> download(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> m = new HashMap<>();
+
+        List<String> list = new ArrayList<>();
+        list.add("部门编号");
+        list.add("部门名称");
+        list.add("回滚总数");
+        m.put("titles", list);
+
+        List<PageData> l = new ArrayList<>();
+
+        PageData pd = this.getPageData();
+        pd.put("var0", "10");
+        pd.put("var1", "外卖");
+        pd.put("var2", "100");
+        l.add(pd);
+
+        PageData pd1 = this.getPageData();
+        pd1.put("var0", "11");
+        pd1.put("var1", "商户端");
+        pd1.put("var2", "80");
+        l.add(pd1);
+
+        PageData pd2 = this.getPageData();
+        pd2.put("var0", "12");
+        pd2.put("var1", "大物流");
+        pd2.put("var2", "120");
+        l.add(pd2);
+
+        m.put("varList", l);
+        ObjectExcelView objectExcelView = new ObjectExcelView();
+
+        HSSFWorkbook wb = new HSSFWorkbook();
+
+        objectExcelView.buildExcelDocument(m, wb, request, response);
+
+        OutputStream out = response.getOutputStream();
+
+        wb.write(out);
+
+        out.flush();
+
+        return map;
     }
 
 }

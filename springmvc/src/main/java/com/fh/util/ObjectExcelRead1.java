@@ -1,10 +1,5 @@
 package com.fh.util;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -14,13 +9,18 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * 从EXCEL导入到数据库
  * 创建人：FH Q313596790
  * 创建时间：2014年12月23日
  */
-public class ObjectExcelRead {
+public class ObjectExcelRead1 {
 
     /**
      * @param filepath //文件路径
@@ -37,24 +37,20 @@ public class ObjectExcelRead {
             File target = new File(filepath, filename);
             FileInputStream fi = new FileInputStream(target);
 
-            //XSSFWorkbook wb = new XSSFWorkbook(fi);
-            //XSSFSheet sheet = wb.getSheetAt(sheetnum);
-            HSSFWorkbook wb = new HSSFWorkbook(fi);
-            HSSFSheet sheet = wb.getSheetAt(sheetnum);                    //sheet 从0开始
+            XSSFWorkbook wb = new XSSFWorkbook(fi);
+            XSSFSheet sheet = wb.getSheetAt(sheetnum);
+
             int rowNum = sheet.getLastRowNum() + 1;                    //取得最后一行的行号
 
             for (int i = startrow; i < rowNum; i++) {                    //行循环开始
 
                 PageData varpd = new PageData();
-                //XSSFRow row = sheet.getRow(i);
+                XSSFRow row = sheet.getRow(i);
 
-                HSSFRow row = sheet.getRow(i);                            //行
                 int cellNum = row.getLastCellNum();                    //每行的最后一个单元格位置
 
                 for (int j = startcol; j < cellNum; j++) {                //列循环开始
-
-                    HSSFCell cell = row.getCell(Short.parseShort(j + ""));
-                    //XSSFCell cell = row.getCell(Short.parseShort(j + ""));
+                    XSSFCell cell = row.getCell(Short.parseShort(j + ""));
                     String cellValue = null;
                     if (null != cell) {
                         switch (cell.getCellType()) {                    // 判断excel单元格内容的格式，并对其进行转换，以便插入数据库

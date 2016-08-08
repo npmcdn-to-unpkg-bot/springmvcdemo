@@ -27,9 +27,9 @@ import com.fh.util.Tools;
 public class ObjectExcelView extends AbstractExcelView {
 
     @Override
-    protected void buildExcelDocument(Map<String, Object> model,
-                                      HSSFWorkbook workbook, HttpServletRequest request,
-                                      HttpServletResponse response) throws Exception {
+    public void buildExcelDocument(Map<String, Object> model,
+                                   HSSFWorkbook workbook, HttpServletRequest request,
+                                   HttpServletResponse response) throws Exception {
         // TODO Auto-generated method stub
         Date date = new Date();
         String filename = Tools.date2Str(date, "yyyyMMddHHmmss");
@@ -49,7 +49,9 @@ public class ObjectExcelView extends AbstractExcelView {
         headerFont.setFontHeightInPoints((short) 11);
         headerStyle.setFont(headerFont);
         short width = 20, height = 25 * 20;
-        sheet.setDefaultColumnWidth(width);
+
+        //sheet.setColumnWidth(50, 100);
+        //sheet.setDefaultColumnWidth(width);
         for (int i = 0; i < len; i++) { //设置标题
             String title = titles.get(i);
             cell = getCell(sheet, 0, i);
@@ -65,12 +67,11 @@ public class ObjectExcelView extends AbstractExcelView {
         for (int i = 0; i < varCount; i++) {
             PageData vpd = varList.get(i);
             for (int j = 0; j < len; j++) {
-                String varstr = vpd.getString("var" + (j + 1)) != null ? vpd.getString("var" + (j + 1)) : "";
+                String varstr = vpd.getString("var" + (j)) != null ? vpd.getString("var" + (j)) : "";
                 cell = getCell(sheet, i + 1, j);
                 cell.setCellStyle(contentStyle);
                 setText(cell, varstr);
             }
-
         }
 
     }

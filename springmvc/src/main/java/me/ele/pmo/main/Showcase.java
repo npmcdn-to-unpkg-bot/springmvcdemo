@@ -2,6 +2,8 @@ package me.ele.pmo.main;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fh.util.ObjectExcelRead;
+import com.fh.util.ObjectExcelRead1;
 import me.ele.pmo.model.Dep;
 import me.ele.pmo.model.Emp;
 
@@ -18,6 +20,8 @@ public class Showcase {
     private static ObjectMapper mapper = new ObjectMapper();
 
     public static void main(String[] args) throws IOException {
+        /*
+
         Dep department = new Dep();
         Emp employee1 = new Emp();
         employee1.setEmployeeId(1);
@@ -46,11 +50,11 @@ public class Showcase {
         department.setDepartmentName("gmd");
         department.setEmployees(list);
 
-        /*
-        System.out.println("=============================");
-        mapper.writeValue(System.out, department);
-        mapper.writeValue(new File("/Users/kimi/Downloads/data.json"), department);
-        System.out.println("=============================");*/
+
+        //System.out.println("=============================");
+        //mapper.writeValue(System.out, department);
+        //mapper.writeValue(new File("/Users/kimi/Downloads/data.json"), department);
+        //System.out.println("=============================");
 
         Dep dep1 = mapper.readValue(new File("/Users/kimi/Downloads/data.json"), Dep.class);
         if (dep1 != null) {
@@ -59,6 +63,11 @@ public class Showcase {
                 System.out.println(e.toString());
             }
         }
+        */
+
+        //List<Object> list = ObjectExcelRead.readExcel("//Users//kimi//Downloads//原", "七月份回滚数据.xls", 1, 0, 0);
+
+        List<Object> list1 = ObjectExcelRead1.readExcel("//Users//kimi//Downloads//原", "七月份回滚数据.xlsx", 1, 0, 0);
     }
 }
 

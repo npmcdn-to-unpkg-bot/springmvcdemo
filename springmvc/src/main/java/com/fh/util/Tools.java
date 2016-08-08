@@ -1,5 +1,7 @@
 package com.fh.util;
 
+import freemarker.ext.beans.HashAdapter;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -11,7 +13,10 @@ import java.io.OutputStreamWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
+import java.util.HashMap;
 import java.util.Random;
+import java.util.function.BiConsumer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -27,9 +32,27 @@ public class Tools {
      *
      * @return
      */
+    static Random r = new Random();
+    static Map<Integer, Integer> o = new HashMap();
+
     public static int getRandomNum() {
-        Random r = new Random();
-        return r.nextInt(900000) + 100000;//(Math.random()*(999999-100000)+100000)
+        //return r.nextInt(900000) + 100000;//(Math.random()*(999999-100000)+100000)
+
+        for (int index = 0; index < 1000; index++
+                ) {
+            int i = r.nextInt(40) + 1;
+
+            if (o.containsKey(i)) {
+                continue;
+            } else if (!o.containsKey(i)) {
+                o.put(i, i);
+                if (o.size() == 40) {
+                    break;
+                }
+            }
+        }
+
+        return -1;
     }
 
     /**
