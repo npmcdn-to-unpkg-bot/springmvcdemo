@@ -1,5 +1,6 @@
 package me.ele.pmo.api;
 
+import com.fh.util.ObjectExcelRead1;
 import com.fh.util.ObjectExcelView;
 import com.fh.util.PageData;
 import me.ele.pmo.base.BaseController;
@@ -11,6 +12,7 @@ import me.ele.pmo.service.DepartmentService;
 import me.ele.pmo.service.EmployeeService;
 import me.ele.pmo.service.ProjectService;
 import me.ele.pmo.service.ProjectService1;
+import org.apache.commons.io.FileUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -19,11 +21,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.document.AbstractExcelView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -285,6 +289,28 @@ public class ShowcaseController extends BaseController {
         wb.write(out);
 
         out.flush();
+
+        return map;
+    }
+
+    @RequestMapping(value = "/upload", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> upload(@RequestParam MultipartFile[] file, HttpServletRequest request, HttpServletResponse response) throws Exception {
+        Map<String, Object> map = new HashMap<>();
+        String realPath = request.getSession().getServletContext().getRealPath("/upload");
+        String originalFileName = "";
+        File f = null;
+        for (MultipartFile excel : file) {
+            originalFileName = excel.getOriginalFilename();
+            f = new File(realPath, originalFileName);
+            FileUtils.copyInputStreamToFile(excel.getInputStream(), f);
+        }
+        List<Object> list1 = null;
+        if (f.exists()) {
+            list1 = ObjectExcelRead1.readExcel(realPath, originalFileName, 1, 0, 0);
+        }
+
+        map.put("result", list1);
 
         return map;
     }

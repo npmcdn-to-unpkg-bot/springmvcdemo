@@ -21,6 +21,7 @@
 <script src="script/jquery-1.9.1.min.js"></script>
 <script src="script/json2.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+<script src="script/ajaxfileupload.js"></script>
 <script>
     $(document).ready(function () {
 
@@ -119,6 +120,29 @@
             }
         });
 
+
+        function ajaxFileUpload() {
+            var elementIds = ["flag"]; //flag为id、name属性名
+            $.ajaxFileUpload({
+                url: '/springmvc/showcase/upload',
+                type: 'post',
+                secureuri: false, //一般设置为false
+                fileElementId: 'file', // 上传文件的id、name属性名
+                dataType: 'json', //返回值类型，一般设置为json、application/json
+                elementIds: elementIds, //传递参数到服务器
+                success: function (data, status) {
+                    alert(data);
+                },
+                error: function (data, status, e) {
+                    alert(e);
+                }
+            });
+        }
+
+        $('#btnUpload').click(function () {
+            ajaxFileUpload();
+        });
+
     });
 
     var app = angular.module('myApp', []);
@@ -126,6 +150,7 @@
         $scope.firstName = "Kimi";
         $scope.lastName = "Qu";
     });
+
 
 </script>
 
@@ -186,5 +211,11 @@
         <td>$100</td>
     </tr>
 </table>-->
+
+<div id="uploadFrm">
+    <p><input type="file" id="file" name="file"/></p>
+    <input type="hidden" id="flag" name="flag" value="ajax文件上传"/>
+    <input type="button" id="btnUpload" value="上传"/>
+</div>
 </body>
 <html>
