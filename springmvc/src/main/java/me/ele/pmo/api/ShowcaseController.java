@@ -1,5 +1,9 @@
 package me.ele.pmo.api;
 
+import java.io.PrintWriter;
+import java.net.URLDecoder;
+
+import com.fh.util.FileUpload;
 import com.fh.util.ObjectExcelRead1;
 import com.fh.util.ObjectExcelView;
 import com.fh.util.PageData;
@@ -279,17 +283,11 @@ public class ShowcaseController extends BaseController {
 
         m.put("varList", l);
         ObjectExcelView objectExcelView = new ObjectExcelView();
-
         HSSFWorkbook wb = new HSSFWorkbook();
-
         objectExcelView.buildExcelDocument(m, wb, request, response);
-
         OutputStream out = response.getOutputStream();
-
         wb.write(out);
-
         out.flush();
-
         return map;
     }
 
@@ -300,18 +298,39 @@ public class ShowcaseController extends BaseController {
         String realPath = request.getSession().getServletContext().getRealPath("/upload");
         String originalFileName = "";
         File f = null;
-        for (MultipartFile excel : file) {
-            originalFileName = excel.getOriginalFilename();
+        for (MultipartFile f1 : file) {
+            //originalFileName = URLDecoder.decode(f1.getOriginalFilename(), "UTF-8");
+            originalFileName = f1.getName();
             f = new File(realPath, originalFileName);
-            FileUtils.copyInputStreamToFile(excel.getInputStream(), f);
+            if (f.exists()) {
+                f.delete();
+            }
+            FileUtils.copyInputStreamToFile(f1.getInputStream(), f);
         }
         List<Object> list1 = null;
         if (f.exists()) {
             list1 = ObjectExcelRead1.readExcel(realPath, originalFileName, 1, 0, 0);
         }
-
         map.put("result", list1);
+        return map;
+    }
 
+    @RequestMapping(value = "/upload1", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> upload1(@RequestParam MultipartFile[] file, HttpServletRequest request, HttpServletResponse response) throws Exception {
+        Map<String, Object> map = new HashMap<>();
+        String realPath = request.getSession().getServletContext().getRealPath("/upload");
+        String originalFileName = "";
+        for (MultipartFile f1 : file) {
+            // TODO: file name should not hardcode
+            originalFileName = FileUpload.fileUp(f1, realPath, "7月回滚");
+        }
+        List<Object> list1 = null;
+        File f = new File(realPath + "//" + originalFileName);
+        if (f.exists()) {
+            list1 = ObjectExcelRead1.readExcel(realPath, originalFileName, 1, 0, 0);
+        }
+        map.put("result", list1);
         return map;
     }
 

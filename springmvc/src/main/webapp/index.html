@@ -122,14 +122,14 @@
 
 
         function ajaxFileUpload() {
-            var elementIds = ["flag"]; //flag为id、name属性名
+            var elementIds = ["flag"];
             $.ajaxFileUpload({
-                url: '/springmvc/showcase/upload',
+                url: '/springmvc/showcase/upload1',
                 type: 'post',
-                secureuri: false, //一般设置为false
-                fileElementId: 'file', // 上传文件的id、name属性名
-                dataType: 'json', //返回值类型，一般设置为json、application/json
-                elementIds: elementIds, //传递参数到服务器
+                secureuri: false,
+                fileElementId: 'file',
+                dataType: 'json',
+                elementIds: elementIds,
                 success: function (data, status) {
                     alert(data);
                 },
@@ -150,7 +150,6 @@
         $scope.firstName = "Kimi";
         $scope.lastName = "Qu";
     });
-
 
 </script>
 

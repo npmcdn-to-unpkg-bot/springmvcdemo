@@ -43,4 +43,12 @@ public class Configuration extends WebMvcConfigurerAdapter {
         converter.setObjectMapper(new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false));
         return converter;
     }
+
+    @Bean(name = "multipartResolver")
+    public CommonsMultipartResolver resolver() {
+        CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver();
+        commonsMultipartResolver.setMaxUploadSize(20971520);
+        commonsMultipartResolver.setMaxInMemorySize(1048576);
+        return commonsMultipartResolver;
+    }
 }
