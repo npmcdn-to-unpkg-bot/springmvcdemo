@@ -12,6 +12,7 @@ import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.util.WebUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -23,38 +24,26 @@ import java.util.List;
  * Created by kimi on 7/19/16.
  */
 @Controller
+@RequestMapping("/login")
 public class LoginController extends BaseController {
-
-    @Autowired
-    private DepartmentService departmentServiceImpl;
-
     @RequestMapping(value = "/login")
-    public String login(Employee user, HttpSession session, HttpServletRequest request) {
-        String code = (String) session.getAttribute("validateCode");
+    public String login(HttpServletRequest request) {
+        /*String code = (String) session.getAttribute("validateCode");
         String submitCode = WebUtils.getCleanParam(request, "validateCode");
         if (StringUtils.isEmpty(submitCode) || !StringUtils.equals(code, submitCode.toLowerCase())) {
             return "redirect:/";
-        }
+        }*/
+        String userName = request.getParameter("userName");
+        String password = request.getParameter("password");
         Subject currentUser = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken(user.getName(), user.getGender());
+        UsernamePasswordToken token = new UsernamePasswordToken(userName, password);
         token.setRememberMe(true);
         try {
             currentUser.login(token);
-            return "";
+            return "redirect:/";
         } catch (AuthenticationException e) {
             token.clear();
-            return "redirect:/";
+            return "redirect:/login.jsp";
         }
-    }
-
-    @RequestMapping(value = "/list")
-    public ModelAndView list() {
-        ModelAndView mv = this.getModelAndView();
-        com.fh.util.PageData pd = new com.fh.util.PageData();
-        List<Department> list = this.departmentServiceImpl.query();
-        mv.setViewName("list");
-        pd.put("list", list);
-        mv.addObject("pd", pd);
-        return mv;
     }
 }

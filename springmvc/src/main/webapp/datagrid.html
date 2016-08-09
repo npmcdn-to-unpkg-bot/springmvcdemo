@@ -44,7 +44,7 @@
 
     $("#flex1").flexigrid(
             {
-                url: '/demo/showcase/query2',
+                url: '/springmvc/showcase/query2',
                 dataType: 'json',
                 colModel: [
                     {display: 'departmentId', name: 'departmentId', width: 100, sortable: true, align: 'center'},
@@ -113,7 +113,7 @@
 
     function add(department) {
         $.ajax({
-            url: "/demo/showcase/add",
+            url: "/springmvc/showcase/add",
             type: "POST",
             data: JSON.stringify(department),
             contentType: "application/json",
