@@ -4,6 +4,8 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fh.util.ObjectExcelRead;
 import com.fh.util.ObjectExcelRead1;
+import com.fh.util.QuartzManager;
+import me.ele.pmo.job.JobExecution;
 import me.ele.pmo.model.Dep;
 import me.ele.pmo.model.Emp;
 
@@ -67,7 +69,9 @@ public class Showcase {
 
         //List<Object> list = ObjectExcelRead.readExcel("//Users//kimi//Downloads//原", "七月份回滚数据.xls", 1, 0, 0);
 
-        List<Object> list1 = ObjectExcelRead1.readExcel("//Users//kimi//Downloads//原", "七月份回滚数据.xlsx", 1, 0, 0);
+        //List<Object> list1 = ObjectExcelRead1.readExcel("//Users//kimi//Downloads//原", "七月份回滚数据.xlsx", 1, 0, 0);
+
+        QuartzManager.addJob("print", JobExecution.class, "0/30 * * * * ?");
     }
 }
 
