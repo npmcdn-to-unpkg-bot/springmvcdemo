@@ -40,7 +40,7 @@ public class LoginController extends BaseController {
         token.setRememberMe(true);
         try {
             currentUser.login(token);
-            return "redirect:/";
+            return "redirect:/datagrid.html";
         } catch (AuthenticationException e) {
             token.clear();
             return "redirect:/login.jsp";
