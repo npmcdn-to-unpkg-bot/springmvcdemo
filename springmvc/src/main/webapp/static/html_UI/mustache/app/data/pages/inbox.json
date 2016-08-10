@@ -1,7 +1,8 @@
 {
- "title" : "Inbox"
- ,
- "description" : "Mailbox with some customizations as described in docs"
- ,
- "scripts" : ["tag" , "wysiwyg"]
+  "title": "Inbox",
+  "description": "Mailbox with some customizations as described in docs",
+  "scripts": [
+    "tag",
+    "wysiwyg"
+  ]
 }

@@ -56,7 +56,7 @@ pre .inherited-class {
     font-style: italic;
 }
 
-pre .operator, pre .support.tag-name , pre .entity.tag {
+pre .operator, pre .support.tag-name, pre .entity.tag {
     color: #F92672;
 }
 

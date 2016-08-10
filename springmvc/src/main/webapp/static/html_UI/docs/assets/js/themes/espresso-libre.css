@@ -59,7 +59,7 @@ pre .comment {
 }
 
 pre .constant.symbol {
-    color:#c5656b;
+    color: #c5656b;
 }
 
 pre .variable.instance, pre .variable.language, pre .constant {

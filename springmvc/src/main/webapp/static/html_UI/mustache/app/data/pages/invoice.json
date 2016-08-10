@@ -1,5 +1,4 @@
 {
- "title" : "Invoice"
- ,
- "no-header" : true
+  "title": "Invoice",
+  "no-header": true
 }

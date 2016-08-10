@@ -38,7 +38,7 @@ public class PersonService implements PersonManager {
     public void deleteAll(String[] ArrayDATA_IDS) throws Exception {
         dao.delete("PersonMapper.deleteAll", ArrayDATA_IDS);
     }
-    
+
     public List<PageData> list(Page page) throws Exception {
         return (List<PageData>) dao.findForList("PersonMapper.listPage", page);
     }

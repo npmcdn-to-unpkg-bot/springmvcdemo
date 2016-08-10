@@ -389,7 +389,7 @@ public class DbFH {
                     }
                 } else {//当数据库为sqlserver时
                     /*String recoverySql = "ALTER DATABASE "+databaseName+" SET ONLINE WITH ROLLBACK IMMEDIATE";// 恢复所有连接
-					PreparedStatement ps = DbFH.getFHCon().prepareStatement(recoverySql);  
+                    PreparedStatement ps = DbFH.getFHCon().prepareStatement(recoverySql);
 			        CallableStatement cs = DbFH.getFHCon().prepareCall("{call killrestore(?,?)}");  
 			        cs.setString(1, databaseName);	 // 数据库名  
 	                cs.setString(2, sqlFilePath); 	// 已备份数据库所在路径  

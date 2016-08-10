@@ -40,7 +40,7 @@ pre .keyword.operator {
 
 pre .constant.language {
     color: #038;
-    font-weight:bold;
+    font-weight: bold;
 }
 
 pre .constant.symbol, pre .class, pre .constant {

@@ -1,32 +1,32 @@
 <section>
-	<div class="help-content">
-		<h3 class="info-title smaller" data-id="#pages/profile">Profile</h3>
-		<!-- #section:pages/profile -->
-		<div class="info-section">
-		 <ul class="info-list list-unstyled">
-			<li>
-				Profile page consists of several sections and plugins.
-				<br />
-				For more information about each plugin please refer to its relevant section.
-			</li>
-			
-			<li>
-			 <!-- #section:pages/profile.picture -->
-			 Profile picture is <code>.img-responsive</code> inside a <code>.profile-picture</code> :
-<pre data-language="html">
+    <div class="help-content">
+        <h3 class="info-title smaller" data-id="#pages/profile">Profile</h3>
+        <!-- #section:pages/profile -->
+        <div class="info-section">
+            <ul class="info-list list-unstyled">
+                <li>
+                    Profile page consists of several sections and plugins.
+                    <br/>
+                    For more information about each plugin please refer to its relevant section.
+                </li>
+
+                <li>
+                    <!-- #section:pages/profile.picture -->
+                    Profile picture is <code>.img-responsive</code> inside a <code>.profile-picture</code> :
+                    <pre data-language="html">
 <span class="profile-picture">
     &lt;img src="path/to/profile-pic.jpg" alt="Alex's Avatar" class="img-responsive" id="avatar" /&gt;
 </span>
 </pre>
-			<!-- /section:pages/profile.picture -->
-			</li>
-			
-			<li>
-			<!-- #section:pages/profile.contact -->
-			Profile contact info is inside <code>.profile-contact-links</code>
-			which contains optional <code>.profile-contact-links</code> and
-			<code>.profile-social-links</code>:
-<pre data-language="html">
+                    <!-- /section:pages/profile.picture -->
+                </li>
+
+                <li>
+                    <!-- #section:pages/profile.contact -->
+                    Profile contact info is inside <code>.profile-contact-links</code>
+                    which contains optional <code>.profile-contact-links</code> and
+                    <code>.profile-social-links</code>:
+                    <pre data-language="html">
 <div class="profile-contact-info">
   <div class="profile-contact-links align-left">
      <a href="#" class="btn btn-link">
@@ -44,14 +44,14 @@
   </div>
 </div>
 </pre>
-			<!-- /section:pages/profile.contact -->
-			</li>
-			
-			<li>
-				<!-- #section:pages/profile.info -->
-				Profile info fields are inside <code>.profile-user-info</code>
-				with optional <code>.profile-user-info-striped</code> class:
-<pre data-language="html">
+                    <!-- /section:pages/profile.contact -->
+                </li>
+
+                <li>
+                    <!-- #section:pages/profile.info -->
+                    Profile info fields are inside <code>.profile-user-info</code>
+                    with optional <code>.profile-user-info-striped</code> class:
+                    <pre data-language="html">
 <div class="profile-user-info profile-user-info-striped">
   <div class="profile-info-row">
     <div class="profile-info-name">
@@ -64,17 +64,17 @@
   </div>
 </div>
 </pre>
-				<!-- /section:pages/profile.info -->
-			</li>
-			
-			<li>
-				<!-- #section:pages/profile.feed -->
-				Profile activity is inside <code>.profile-feed</code> with <code>.profile-activity</code> items:
-<pre data-language="html">
+                    <!-- /section:pages/profile.info -->
+                </li>
+
+                <li>
+                    <!-- #section:pages/profile.feed -->
+                    Profile activity is inside <code>.profile-feed</code> with <code>.profile-activity</code> items:
+                    <pre data-language="html">
 <div class="profile-feed">
   <div class="profile-activity clearfix">
     <div>
-        <img class="pull-left" alt="user avatar" src="path/to/avatar" />
+        <img class="pull-left" alt="user avatar" src="path/to/avatar"/>
         <!-- or icon ->
         <!-- <i class="pull-left thumbicon btn-success no-hover"></i> -->
         <a class="user" href="#">Name</a>
@@ -88,22 +88,22 @@
 </div>
 </pre>
 
-			<!-- /section:pages/profile.feed -->
-			</li>
-			
-			<li>
-				<!-- #section:pages/profile.friends -->
-				Profile friends list which is inside <code>.profile-users</code> 
-				and consists of <code>.itemdiv.memberdiv</code> items
-				with <code>.user</code>, <code>.body</code> and <code>.popover</code> parts:
-<pre data-language="html">
+                    <!-- /section:pages/profile.feed -->
+                </li>
+
+                <li>
+                    <!-- #section:pages/profile.friends -->
+                    Profile friends list which is inside <code>.profile-users</code>
+                    and consists of <code>.itemdiv.memberdiv</code> items
+                    with <code>.user</code>, <code>.body</code> and <code>.popover</code> parts:
+                    <pre data-language="html">
 <div class="profile-users clearfix">
   <div class="itemdiv memberdiv">
    <div class="inline pos-rel">
 
        <div class="user">
           <a href="#">
-             <img src="path/to/avatar" alt="user avatar" />
+             <img src="path/to/avatar" alt="user avatar"/>
           </a>
        </div><!-- /.user -->
 
@@ -136,9 +136,9 @@
   </div>
 </div>
 </pre>
-		
-		With some javascript code, you can dynamically change the popover's direction to right or left:
-<pre data-language="javascript">
+
+                    With some javascript code, you can dynamically change the popover's direction to right or left:
+                    <pre data-language="javascript">
 $('.memberdiv').on('mouseenter touchstart', function(){
    var $this = $(this);
    var $parent = $this.closest('.tab-pane');//or other relevent parent
@@ -160,14 +160,14 @@ $('.memberdiv').on('mouseenter touchstart', function(){
  });
 </pre>
 
-		<!-- /section:pages/profile.friends -->
-		</li>
-		
-		
-		<li>
-			<!-- #section:pages/profile.skill-progress -->
-				Skill progress bars are inside <code>.profile-skills</code> with following markup:
-<pre data-language="html">
+                    <!-- /section:pages/profile.friends -->
+                </li>
+
+
+                <li>
+                    <!-- #section:pages/profile.skill-progress -->
+                    Skill progress bars are inside <code>.profile-skills</code> with following markup:
+                    <pre data-language="html">
 <div class="profile-skills">
    <div class="progress">
      <div class="progress-bar progress-bar-purple" style="width:70%">
@@ -178,11 +178,11 @@ $('.memberdiv').on('mouseenter touchstart', function(){
 </div>
 </pre>
 
-			<!-- /section:pages/profile.skill-progress -->
-			</li>
-			
-		 </ul>
-		</div>
-	</div>
-	<!-- /section:pages/profile -->
+                    <!-- /section:pages/profile.skill-progress -->
+                </li>
+
+            </ul>
+        </div>
+    </div>
+    <!-- /section:pages/profile -->
 </section>

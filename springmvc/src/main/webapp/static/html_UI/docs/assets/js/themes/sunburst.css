@@ -22,7 +22,8 @@ pre, code {
 }
 
 pre .comment {
-    color: #AEAEAE; font-style: italic;
+    color: #AEAEAE;
+    font-style: italic;
 }
 
 pre .constant {
@@ -34,13 +35,13 @@ pre .storage {
 }
 
 pre .string, pre .entity.name.class, pre .comment.docstring {
-color: #65B042;
-/* green */
+    color: #65B042;
+    /* green */
 }
 
 pre .string.regexp {
- color: #E9C062;
-    }
+    color: #E9C062;
+}
 
 pre .string.constant {
     color: #DDF2A4;
@@ -50,15 +51,19 @@ pre .constant.hex-color {
     color: #DD7B3B;
     /* orange */
 }
+
 pre .support, pre .tag.script, pre .function.call {
     color: #dad085;
 }
+
 pre .support.css-property {
     color: #C5AF75;
 }
+
 pre .support.tag.style {
     color: #fff;
 }
+
 pre .keyword, pre .selector {
     color: #E28964;
     /* dark pink */
@@ -87,8 +92,9 @@ pre .entity.name.id {
 
 pre .variable, pre .variable.global {
     color: #3E87E3;
-    }
+}
+
 pre .variable.class {
 
-    }
+}
 

@@ -1,7 +1,5 @@
 {
- "title" : "500 Error Page"
- ,
- "description" : "500 Error Page"
- ,
- "no-header" : true
+  "title": "500 Error Page",
+  "description": "500 Error Page",
+  "no-header": true
 }
