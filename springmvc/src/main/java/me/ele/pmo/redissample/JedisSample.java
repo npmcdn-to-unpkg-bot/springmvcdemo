@@ -36,7 +36,7 @@ public class JedisSample {
         jedis.auth("123456");
         try {
 
-            System.out.println(jedis.get("age"));
+            System.out.println(jedis.get("gender"));
 
             //jedis.rpush("test", "1");
 

@@ -1,0 +1,8 @@
+{
+  "title": "Tables",
+  "description": "Static & Dynamic Tables",
+  "scripts": [
+    "dataTables",
+    "dataTables-extensions"
+  ]
+}

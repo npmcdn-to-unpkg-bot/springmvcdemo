@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="PersonMapper">
+
+    <sql id="tableName">
+        TB_PERSON
+    </sql>
+
+    <sql id="Field">
+        NAME,
+        GENDER,
+        PERSON_ID
+    </sql>
+
+    <sql id="FieldValue">
+        #{NAME},
+        #{GENDER},
+        #{PERSON_ID}
+    </sql>
+
+    <insert id="save" parameterType="pd">
+        insert into
+        <include refid="tableName"></include>
+        (
+        <include refid="Field"></include>
+        ) values (
+        <include refid="FieldValue"></include>
+        )
+    </insert>
+
+    <delete id="delete" parameterType="pd">
+        delete from
+        <include refid="tableName"></include>
+        where
+        PERSON_ID = #{PERSON_ID}
+    </delete>
+
+    <update id="edit" parameterType="pd">
+        update
+        <include refid="tableName"></include>
+        set
+        PERSON_ID = PERSON_ID
+        where
+        PERSON_ID = #{PERSON_ID}
+    </update>
+
+    <select id="findById" parameterType="pd" resultType="pd">
+        select
+        <include refid="Field"></include>
+        from
+        <include refid="tableName"></include>
+        where
+        PERSON_ID = #{PERSON_ID}
+    </select>
+
+    <select id="listPage" parameterType="page" resultType="pd">
+        select
+        <include refid="Field"></include>
+        from
+        <include refid="tableName"></include>
+    </select>
+
+    <select id="listAll" parameterType="pd" resultType="pd">
+        select
+        <include refid="Field"></include>
+        from
+        <include refid="tableName"></include>
+    </select>
+
+    <delete id="deleteAll" parameterType="String">
+        delete from
+        <include refid="tableName"></include>
+        where
+        PERSON_ID in
+        <foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+</mapper>

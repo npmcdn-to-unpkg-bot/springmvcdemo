@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            background-color: #008de1;
+        }
+
+        h1 {
+            background-color: #00ff00;
+        }
+
+        p {
+            background-color: rgb(255, 0, 255);
+        }
+
+    </style>
+</head>
+<script src="script/jquery-1.9.1.min.js"></script>
+<script src="script/json2.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+<script src="script/ajaxfileupload.js"></script>
+<script>
+    $(document).ready(function () {
+
+        $("#btnQuery").bind("click", function () {
+            $.ajax({
+                // TODO: replace with the real service url
+                url: "json/sayhello.json",
+                type: "GET",
+                contentType: "application/json",
+                success: function (data) {
+                    console.log(data.name + " " + data.age + " " + data.gender);
+                }
+            });
+        });
+
+        $("#btnAdd").bind("click", function () {
+            var department = new Object();
+            department.departmentId = 10;
+            department.departmentName = $("#departmentName").val();
+            department.departmentManager = $("#departmentManager").val();
+            department.projectManager = $("#projectManager").val();
+            //department.departmentName = "napos";
+            //department.departmentManager = "run.zhao@ele.me";
+            //department.projectManager = "li.wang03@ele.me";
+            $.ajax({
+                url: "/demo/showcase/add",
+                type: "POST",
+                data: JSON.stringify(department),
+                contentType: "application/json",
+                success: function (data) {
+                    //console.log(data.departmentName + " " + data.departmentManager + " " + data.projectManager);
+                }
+            });
+        });
+
+        $("#btnQuery1").bind("click", function () {
+            var departmentId = $("#txtDepartmentId").val();
+            $.ajax({
+                url: "/demo/demo/query1?departmentId=" + departmentId,
+                type: "GET",
+                contentType: "application/json",
+                success: function (data) {
+                    console.log(data);
+                }
+            });
+        });
+
+        $("#btnAdd2").bind("click", function () {
+
+            var dep = new Object();
+            dep.departmentId = 10;
+            dep.departmentName = "商户端";
+
+            var emp1 = new Object();
+            emp1.employeeId = 1;
+            emp1.name = "kimi";
+            emp1.age = 33;
+            emp1.gender = "male";
+
+            var emp2 = new Object();
+            emp2.employeeId = 2;
+            emp2.name = "benson";
+            emp2.age = 35;
+            emp2.gender = "male";
+
+            var emp3 = new Object();
+            emp3.employeeId = 3;
+            emp3.name = "lucy";
+            emp3.age = 37;
+            emp3.gender = "female";
+
+            var emps = [];
+            emps.push(emp1);
+            emps.push(emp2);
+            emps.push(emp3);
+
+            dep.employees = emps;
+
+            $.ajax({
+                url: "/demo/demo/add2",
+                type: "POST",
+                data: JSON.stringify(dep),
+                contentType: "application/json",
+                success: function (data) {
+                }
+            });
+        });
+
+        $.ajax({
+            url: "/springmvc/showcase/get2.aspxfds",
+            type: "GET",
+            dataType: "html",
+            contentType: "application/x-www-form-urlencoded",
+            success: function (data) {
+                $("#projects").html(data);
+            }
+        });
+
+
+        function ajaxFileUpload() {
+            var elementIds = ["flag"];
+            $.ajaxFileUpload({
+                url: '/springmvc/showcase/upload1',
+                type: 'post',
+                secureuri: false,
+                fileElementId: 'file',
+                dataType: 'json',
+                elementIds: elementIds,
+                success: function (data, status) {
+                    alert(data);
+                },
+                error: function (data, status, e) {
+                    alert(e);
+                }
+            });
+        }
+
+        $('#btnUpload').click(function () {
+            ajaxFileUpload();
+        });
+
+    });
+
+    var app = angular.module('myApp', []);
+    app.controller('showcase', function ($scope) {
+        $scope.firstName = "Kimi";
+        $scope.lastName = "Qu";
+    });
+
+</script>
+
+<body class="back">
+<h2>Hello World!</h2>
+<label id="lbldeprtmentName">department name:</label> <input type="text" id="departmentName"><br/>
+<label id="lbldeprtmentManager">department manager:</label> <input type="text" id="departmentManager"><br/>
+<label id="lblprojectManager">project manager:</label> <input type="text" id="projectManager"><br/>
+
+<br/>
+<input type="button" id="btnQuery" value="query"/>
+<br/>
+<input type="button" id="btnAdd" value="add"/>
+<br/>
+<input type="text" id="txtDepartmentId">
+<input type="button" id="btnQuery1" value="query1"/>
+<br/>
+<input type="button" id="btnAdd2" value="add2"/>
+
+<div id="projects"></div>
+
+<!--
+<div ng-app="">
+    <p>Name : <input type="text" ng-model="name1"></p>
+    <h1>Hello {{name1}}</h1>
+    <p ng-bind="name1"></p>
+</div>
+-->
+<p></p>
+
+<!--
+<div ng-app="myApp" ng-controller="showcase">
+    <p>My first expression: {{ 5 + 5 }}</p>
+
+    First Name: <input type="text" ng-model="firstName"><br>
+    Last Name: <input type="text" ng-model="lastName"><br>
+    <br>
+    Full Name: {{firstName + " " + lastName}}
+</div>
+-->
+
+<form ng-app="" name="myForm">
+    Email:
+    <input type="email" name="myAddress" ng-model="text">
+    <span ng-show="myForm.myAddress.$error.email">Not a valid e-mail address</span>
+</form>
+
+<p>Enter your e-mail address in the input field. AngularJS will display an error message if the address is not an
+    e-mail.</p>
+<!--
+<table border="1">
+    <tr>
+        <th>Month</th>
+        <th>Savings</th>
+    </tr>
+    <tr>
+        <td>January</td>
+        <td>$100</td>
+    </tr>
+</table>-->
+
+<div id="uploadFrm">
+    <p><input type="file" id="file" name="file"/></p>
+    <input type="hidden" id="flag" name="flag" value="ajax文件上传"/>
+    <input type="button" id="btnUpload" value="上传"/>
+</div>
+</body>
+<html>

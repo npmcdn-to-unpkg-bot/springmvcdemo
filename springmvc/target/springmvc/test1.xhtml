@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Title</title>
+    <style type="text/css">
+        table, th, td {
+            border: 1px solid grey;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+
+        table tr:nth-child(odd) {
+            background-color: #f2f2f2;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+<h2>AngularJS Sample Application</h2>
+<script type="javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"/>
+<script type="javascript">
+    function studentController($scope, $http) {
+        var url = "http://192.168.80.30:8080/pmo.api/department/queryall";
+        $http.get(url).success(function (response) {
+            $scope.data = response;
+
+            alert(response);
+            console.log(response);
+
+            console.log($scope.data);
+        });
+    }
+</script>
+<div ng-app="" ng-controller="studentController">
+    <table>
+        <tr>
+            <th>departmentId</th>
+            <th>departmentName</th>
+            <th>departmentOwner</th>
+        </tr>
+        <tr ng-repeat="d in ">
+            <td>{{ d.departmentId }}</td>
+            <td>{{ d.departmentName }}</td>
+            <td>{{ d.departmentOwner }}</td>
+        </tr>
+    </table>
+</div>
+</body>
+
+</html>
