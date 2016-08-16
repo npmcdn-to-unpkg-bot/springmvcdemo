@@ -338,4 +338,11 @@ public class ShowcaseController extends BaseController {
         return map;
     }
 
+    @RequestMapping(value = "/upload2", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> upload2(@RequestBody Map<String, Object> map, HttpServletRequest request, HttpServletResponse response) throws Exception {
+        Map<String, Object> map1 = new HashMap<>();
+        map1.put("key", map.get("key"));
+        return map1;
+    }
 }

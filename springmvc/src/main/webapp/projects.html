@@ -1,0 +1,26 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html ng-app="app">
+<head>
+    <title>Title</title>
+    <script src="js/angular.js">
+    </script>
+    <script src="js/projects.js"></script>
+
+</head>
+<body ng-controller="ProjectListController">
+
+<ul>
+    <li ng-repeat="project in projects">
+        {{project.departmentName}}
+        <p>{{project.createdAt}}</p>
+    </li>
+</ul>
+
+<div ng-controller="AddProjectController">
+    <input type="text" id="departmentId" ng-model="departmentId"/>
+    <input type="text" id="departmentName" ng-model="departmentName"/>
+    <input type="button" id="btnAdd" value="add" ng-click="add()"/>
+</div>
+</body>
+</html>
