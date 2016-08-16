@@ -67,7 +67,9 @@ public class ObjectExcelView extends AbstractExcelView {
         for (int i = 0; i < varCount; i++) {
             PageData vpd = varList.get(i);
             for (int j = 0; j < len; j++) {
-                String varstr = vpd.getString("var" + (j)) != null ? vpd.getString("var" + (j)) : "";
+                String columnName = titles.get(j);
+                String varstr = vpd.get(columnName) != null ? String.valueOf(vpd.get(columnName)) : "";
+                //vpd.getString("var" + (j)) != null ? vpd.getString("var" + (j)) : "";
                 cell = getCell(sheet, i + 1, j);
                 cell.setCellStyle(contentStyle);
                 setText(cell, varstr);

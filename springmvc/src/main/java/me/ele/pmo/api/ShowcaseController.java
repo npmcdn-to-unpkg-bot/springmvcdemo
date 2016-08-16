@@ -256,14 +256,17 @@ public class ShowcaseController extends BaseController {
         Map<String, Object> m = new HashMap<>();
 
         List<String> list = new ArrayList<>();
-        list.add("部门编号");
-        list.add("部门名称");
-        list.add("回滚总数");
+        list.add("projectId");
+        list.add("departmentId");
+        list.add("departmentName");
+        list.add("createdAt");
         m.put("titles", list);
 
-        List<PageData> l = new ArrayList<>();
-
         PageData pd = this.getPageData();
+
+        List<PageData> l = this.projectServiceImpl.list(pd);
+
+/*
         pd.put("var0", "10");
         pd.put("var1", "外卖");
         pd.put("var2", "100");
@@ -280,8 +283,9 @@ public class ShowcaseController extends BaseController {
         pd2.put("var1", "大物流");
         pd2.put("var2", "120");
         l.add(pd2);
-
+*/
         m.put("varList", l);
+
         ObjectExcelView objectExcelView = new ObjectExcelView();
         HSSFWorkbook wb = new HSSFWorkbook();
         objectExcelView.buildExcelDocument(m, wb, request, response);
