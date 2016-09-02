@@ -7,3 +7,17 @@
 *.iml
 out
 gen
+/target/
+.DS_Store
+.classpath
+.project
+.settings/
+src/main/.DS_Store
+src/main/java/.DS_Store
+src/main/java/com/.DS_Store
+src/main/java/com/fh/.DS_Store
+src/main/java/me/ele/.DS_Store
+src/main/webapp/logs/
+src/main/webapp/static/html_UI/mustache/app/views/pages/partials/_shared/
+src/main/webapp/static/html_UI/mustache/php/_cache/
+src/test/
